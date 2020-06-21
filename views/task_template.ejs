@@ -1,0 +1,47 @@
+<div class="card">
+    <div class="card-header" id="<%=task.id%>">
+        <div class="task-data">
+            <div class="task-data--item">
+                <p>
+                    Title: <%=task.title%>
+                </p>
+            </div>
+            <div class="task-data--item">
+                <p>
+                    Status: <%=task.status%>
+                </p>
+            </div>
+            <div class="task-data--item">
+                <p>
+                    Author: <%=task.author.username%>
+                </p>
+            </div>
+            <div class="task-data--item">
+                <p>
+                    Description: <%=task.description%>
+                </p>
+            </div>
+            </ul>
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<%=task.id%>" aria-expanded="true"
+                aria-controls="collapseOne">
+                Show more
+            </button>
+        </div>
+
+        <div id="collapse<%=task.id%>" class="collapse " aria-labelledby="headingOne" data-parent="#task-list">
+            <div class="card-body">
+                <form action="" class="task-work-form">
+                    <div class="task-work-form--item  form-group">
+                        <label for="task<%=task.id%>-comment">Email address:</label>
+                        <input type="textarea" class="form-control" placeholder="" id="task<%=task.id%>-comment">
+
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary task-work-form--button">Done</button>
+                        <button type="submit" class="btn btn-primary task-work-form--button">Reject</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

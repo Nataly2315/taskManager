@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const user = require('../models/User');
 
 passport.serializeUser(function(user, done) {
     /*
@@ -24,8 +25,12 @@ passport.use(new GoogleStrategy({
         clientSecret: "cmYC62UIqb1WDqnUe2mgdFsA",
         callbackURL: "http://localhost:3000/google/callback"
     },
-    function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
+ async  function(accessToken, refreshToken, profile, done) {
+    const isExist = await user.findOne({ openId: profile.id  });
+    if (!isExist) {
+    await user.create({ openId: profile.id, username: profile.displayName});
+    }
+
         /*
          use the profile info (mainly profile id) to check if the user is registerd in ur db
          If yes select the user and pass him to the done callback

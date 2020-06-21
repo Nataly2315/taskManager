@@ -1,11 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<head>
+  <title><%= title %></title>
+  <!-- Кодировка веб-страницы -->
+  <meta charset="utf-8">
+  <!-- Настройка viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Подключаем Bootstrap CSS -->
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+
+
+  <div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" id="myTasks-tab" data-toggle="tab" href="#task-list" role="tab"
+          aria-controls="task-list" aria-selected="true">Created by me</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="toDo-tab" data-toggle="tab" href="#toDo" role="tab" aria-controls="toDo"
+          aria-selected="false">Tasks to do</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#createTask" role="tab" aria-controls="createTask"
+          aria-selected="false">Add new task</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane show active" id="task-list" role="tabpanel">
+
+        <%createdTaskList.forEach((task)=>{%>
+        <% include task_template.ejs %>
+        <%})%>
+
+      </div>
+      <div class="tab-pane fade" id="toDo" role="tabpanel">
+
+        <%toDoTaskList.forEach((task)=>{%>
+        <% include task_template.ejs %>
+        <%})%>
+
+      </div>
+      <div class="tab-pane fade" id="createTask" role="tabpanel">
+        <% include create_task_form%>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="/jquery/dist/jquery.min.js"></script>
+  <!-- Подключаем Bootstrap JS -->
+  <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/js/script.js"></script>
+</body>
+
 </html>

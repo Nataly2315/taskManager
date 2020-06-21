@@ -1,8 +1,9 @@
 const {Schema, model} = require('mongoose');
 
 const schema = new Schema({
-    username: {
-        type: String,
+    author: {
+        type: Schema.Types.ObjectId, 
+        ref: 'User' ,
         required: true,
     },
     title: {
@@ -12,8 +13,14 @@ const schema = new Schema({
         type: String,
     },
     executor: {
-        type: String,
+        type: Schema.Types.ObjectId, 
+        ref: 'User',
+        required: true,
     },
+    status: {
+        type: String,
+    }
+    ,
     time: {
         type: Date,
     },
@@ -23,6 +30,6 @@ const schema = new Schema({
 
 });
 
-module.exports = model('User', schema);
+module.exports = model('Task', schema);
 
 
