@@ -1,13 +1,15 @@
 # taskManager
  simple task manager
 
-to run 
+To run taskManager 
 You have first to clone repo
 then when the repository has been cloned:
 
-cd taskManager
-npm install -- installing the dependencies
-npm start
+**cd taskManager**
+
+**npm install**  installing the dependencies
+
+**npm start**
 
 After you can see it on http://localhost/
 
