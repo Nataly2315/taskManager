@@ -1,0 +1,44 @@
+<div class="card">
+    <div class="card-header" id="<%=task.id%>">
+        <div class="task-data">
+            <div class="task-data--item">
+                <p>
+                    Title: <%=task.title%>
+                </p>
+            </div>
+            <div class="task-data--item">
+                <p>
+                    Status: <%=task.status%>
+                </p>
+            </div>
+            <div class="task-data--item">
+                <p>
+                    Description: <%=task.description%>
+                </p>
+            </div>
+            <div class="task-data--item">
+                <p>
+                    Executor: <%=task.executor.username%>
+                </p>
+            </div>
+            <div class="task-data--item">
+                <p>
+                    Comment: <%=task.comment%>
+                </p>
+            </div>
+            <div class="task-data--item">
+                <p>
+                    Time: <%=task.time%>
+                </p>
+            </div>
+        </div>
+
+ <%if (task.status === "Done" || task.status === "Rejected") {%>
+        <div >
+            <button  onclick="confirmTask('<%=task._id%>')" class="btn btn-primary task-work-form--button">Confirm</button>
+            <button  onclick="returnTask('<%=task._id%>')" class="btn btn-primary task-work-form--button">Return</button>
+        </div>
+<%}%>
+
+    </div>
+</div>

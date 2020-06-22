@@ -13,13 +13,13 @@ const apiRouter = require('./routes/api');
 const cors = require('cors');
 const passport = require('passport');
 
-const { Telegraf } = require('telegraf');
 
-const bot = new Telegraf('825758597:AAG2QQPDGbq4MR6gjayPJc6e71bvNeEnrSg');
 
 require('./googleOAuth/authenticating-users');
 
 require('./models/index');
+require('./telegramAPI/telegram');
+
 const app = express();
 
 
@@ -29,15 +29,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
-
-let id="344101336";
-bot.telegram.sendMessage(id, "cool");
-bot.launch();
-
-module.exports
-
-
-//initmongo();
 
 app.use(logger('dev'));
 app.use(express.json());

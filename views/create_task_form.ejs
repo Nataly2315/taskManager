@@ -1,7 +1,10 @@
 <form id="create-task-form">
+    <div class="alert alert-success d-none">
+        <strong>Success!</strong> Task was created.
+      </div>
     <div class="form-group">
       <label for="title">Title</label>
-      <input type="input" class="form-control" id="title" name="title" placeholder="Title...">
+      <input type="input" class="form-control" id="title" name="title" required>
     </div>
     <div class="form-group">
       <label for="exampleFormControlSelect1">Executor</label>
@@ -12,8 +15,8 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="description">Example textarea</label>
-      <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
     </div>
-    <button type="submit" onsubmit=create()">Create task</button>
+    <button type="submit" class ="btn btn-primary" onsubmit=create()">Create task</button>
 </form>

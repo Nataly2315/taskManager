@@ -19,10 +19,11 @@ const schema = new Schema({
     },
     status: {
         type: String,
+        required: true,
     }
     ,
     time: {
-        type: Date,
+        type: String,
     },
     comment: {
         type: String,

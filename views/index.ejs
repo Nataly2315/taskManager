@@ -18,38 +18,46 @@
   <div class="tabbable tabs-left">
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link active" id="myTasks-tab" data-toggle="tab" href="#task-list" role="tab"
+        <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#createTask" role="tab" aria-controls="createTask"
+          aria-selected="false">Add new task</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " id="myTasks-tab" data-toggle="tab" href="#task-list" role="tab"
           aria-controls="task-list" aria-selected="true">Created by me</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="toDo-tab" data-toggle="tab" href="#toDo" role="tab" aria-controls="toDo"
           aria-selected="false">Tasks to do</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#createTask" role="tab" aria-controls="createTask"
-          aria-selected="false">Add new task</a>
+
+      <% if (telegram) {%>
+      <li class="nav-item telegram-item">
+        <% include telegram.ejs %>
       </li>
+      <%}%>
+   
     </ul>
+    
     <div class="tab-content">
-      <div class="tab-pane show active" id="task-list" role="tabpanel">
+      <div class="tab-pane fade" id="task-list" role="tabpanel">
+      <%if (createdTaskList.length === 0) {%><p> You have not created any tasks.</p><%}%>
+      <%createdTaskList.forEach((task)=>{%>
+        <% include toCheck_task_template.ejs %>
+      <%})%>
 
-        <%createdTaskList.forEach((task)=>{%>
-        <% include task_template.ejs %>
-        <%})%>
+  </div>
+  <div class="tab-pane fade" id="toDo" role="tabpanel">
+    <%if (createdTaskList.length === 0) {%><p> You don't have any tasks to do.</p><%}%>
+    <%toDoTaskList.forEach((task)=>{%>
+      <% include toDo_task_template.ejs %>
+    <%})%>
 
-      </div>
-      <div class="tab-pane fade" id="toDo" role="tabpanel">
+  </div>
+  <div class="tab-pane show active" id="createTask" role="tabpanel">
+    <% include create_task_form%>
 
-        <%toDoTaskList.forEach((task)=>{%>
-        <% include task_template.ejs %>
-        <%})%>
-
-      </div>
-      <div class="tab-pane fade" id="createTask" role="tabpanel">
-        <% include create_task_form%>
-
-      </div>
-    </div>
+  </div>
+  </div>
   </div>
 
   <script src="/jquery/dist/jquery.min.js"></script>

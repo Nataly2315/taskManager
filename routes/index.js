@@ -10,7 +10,7 @@ const isLoggedIn = (req, res, next) => {
     if (req.user) {
         next();
     } else {
-        res.sendStatus(401);
+        res.redirect('/google');
     }
 }
 
@@ -21,12 +21,10 @@ router.get('/failed', (req, res) => res.send('You Failed to log in!'))
 // In this route you can see that if the user is logged in u can acess his info in: req.user
 router.get('/', isLoggedIn, async (req, res) =>{
     const users = await User.find();
-    const user = await User.find({openID: req.user.id});
-    const createdTaskList = await Task.find({author: user._id}).populate('author');
-    const toDoTaskList = await Task.find({executor: user._id}).populate('executor');
-
-    console.log(createdTaskList);
-res.render(`../views/index.ejs`, {title:"TaskManager", createdTaskList, toDoTaskList ,users})});
+    const user = await User.findOne({openId: req.user.id});
+    const createdTaskList = await Task.find({author: user._id}).populate('executor');
+    const toDoTaskList = await Task.find({executor: user._id}).populate('author');
+res.render(`../views/index.ejs`, {title:"TaskManager", createdTaskList, toDoTaskList ,users, telegram: !user.chatId})});
 
 
 // Auth Routes
@@ -42,7 +40,7 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
 router.get('/logout', (req, res) => {
     req.session = null;
     req.logout();
-    res.redirect('/');
+    res.redirect('/google');
 })
 
 

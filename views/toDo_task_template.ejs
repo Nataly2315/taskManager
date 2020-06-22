@@ -1,0 +1,70 @@
+<div class="card">
+    <div class="card-header" id="<%=task.id%>">
+        <div class="task-data">
+            <div class="task-data--item">
+                <p>
+                    Title: <%=task.title%>
+                </p>
+            </div>
+            <div class="task-data--item">
+                <p>
+                    Status: <%=task.status%>
+                </p>
+            </div>
+            <div class="task-data--item">
+                <p>
+                    Author: <%=task.author.username%>
+                </p>
+            </div>
+            <div class="task-data--item">
+                <p>
+                    Description: <%=task.description%>
+                </p>
+            </div>
+        </div>
+        <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse<%=task.id%>" aria-expanded="true"
+            aria-controls="collapseOne">
+            Show more
+        </button>
+    </div>
+
+    <div id="collapse<%=task.id%>" class="collapse " aria-labelledby="headingOne" data-parent="#task-list">
+        <%if (task.status === "New" || task.status === "Returned"){%>
+
+        <div class="card-body">
+
+            <div class="task-work-form--item form-group">
+                <label for="task<%=task.id%>-comment">Comment:</label>
+                <input type="textarea" class="form-control" name="comment" placeholder="" id="task<%=task.id%>-comment">
+
+            </div>
+            <div>
+                <button onclick="doneTask('<%=task._id%>')" class="btn btn-primary task-work-form--button">Done</button>
+                <button onclick="rejectTask('<%=task._id%>')"
+                    class="btn btn-primary task-work-form--button">Reject</button>
+            </div>
+
+        </div>
+
+
+        <%} else {%>
+        <div class="card-body">
+            <div class="task-data">
+                <div class="task-data--item">
+                    <p>
+                        Comment: <%=task.comment%>
+                    </p>
+                </div>
+                <div class="task-data--item">
+                    <p>
+                        Time: <%=task.time%>
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+        <%}%>
+    </div>
+</div>
+
